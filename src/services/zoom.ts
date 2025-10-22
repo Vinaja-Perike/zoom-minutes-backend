@@ -59,8 +59,8 @@ export async function fetchZoomMeetingData(params: {
   asVtt?: boolean;
 }) {
   const { meetingId, clientId, clientSecret, accountId, asVtt } = params;
-  // const token = await getZoomAccessToken(clientId, clientSecret, accountId);
-  const token = "eyJzdiI6IjAwMDAwMiIsImFsZyI6IkhTNTEyIiwidiI6IjIuMCIsImtpZCI6ImI2ODJlZGFkLTkzZTItNGU5ZS05MzFiLTEwNjY2ZjYzYTVjYyJ9.eyJhdWQiOiJodHRwczovL29hdXRoLnpvb20udXMiLCJ1aWQiOiJEQk9qTXVzdFIwLUVzVFNJRlptdXZnIiwidmVyIjoxMCwiYXVpZCI6IjAyYjJlNDFjZDkwYTUyZWE5N2M3OGU3MmE5Y2JkZDM4MjQ4ZWJlMDI4YmM3NGEyMWRiOTdlYTk0NWUwYWNmNjkiLCJuYmYiOjE3NjExMTc4MzQsImNvZGUiOiJ4ekdJMEFjcVJKU0VsZUZTbEhISU1RaUQyOGVTRDhiRnIiLCJpc3MiOiJ6bTpjaWQ6YTRyMnlqbWlSdTJKSHMyVHk3N2pjUSIsImdubyI6MCwiZXhwIjoxNzYxMTIxNDM0LCJ0eXBlIjozLCJpYXQiOjE3NjExMTc4MzQsImFpZCI6IkduWkE0NDVjVFM2M0pqNHNvM28tWHcifQ.jmLsfAK4RY-YsxVOkd8VN-9W0nD-up7Srtr56CcXFx9-5DAYQHXpVf_g7xisySu4L10BScOG38YYGKNZaDzGog";
+  const token = await getZoomAccessToken(clientId, clientSecret, accountId);
+  // const token = "eyJzdiI6IjAwMDAwMiIsImFsZyI6IkhTNTEyIiwidiI6IjIuMCIsImtpZCI6ImI2ODJlZGFkLTkzZTItNGU5ZS05MzFiLTEwNjY2ZjYzYTVjYyJ9.eyJhdWQiOiJodHRwczovL29hdXRoLnpvb20udXMiLCJ1aWQiOiJEQk9qTXVzdFIwLUVzVFNJRlptdXZnIiwidmVyIjoxMCwiYXVpZCI6IjAyYjJlNDFjZDkwYTUyZWE5N2M3OGU3MmE5Y2JkZDM4MjQ4ZWJlMDI4YmM3NGEyMWRiOTdlYTk0NWUwYWNmNjkiLCJuYmYiOjE3NjExMTc4MzQsImNvZGUiOiJ4ekdJMEFjcVJKU0VsZUZTbEhISU1RaUQyOGVTRDhiRnIiLCJpc3MiOiJ6bTpjaWQ6YTRyMnlqbWlSdTJKSHMyVHk3N2pjUSIsImdubyI6MCwiZXhwIjoxNzYxMTIxNDM0LCJ0eXBlIjozLCJpYXQiOjE3NjExMTc4MzQsImFpZCI6IkduWkE0NDVjVFM2M0pqNHNvM28tWHcifQ.jmLsfAK4RY-YsxVOkd8VN-9W0nD-up7Srtr56CcXFx9-5DAYQHXpVf_g7xisySu4L10BScOG38YYGKNZaDzGog";
 
   const recUrl = `https://api.zoom.us/v2/meetings/${encodeURIComponent(meetingId)}/recordings`;
   const recResp = await fetch(recUrl, { headers: { Authorization: `Bearer ${token}` } });
