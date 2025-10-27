@@ -2,9 +2,11 @@
 import { Router } from "express";
 import { fetchZoomMeetingData } from "../services/zoom.js";
 import { getAppAccessToken } from "../services/teams.js";
+import { getAccessTokenFromRefresh } from "../services/meet.js";
 
 export const zoomRouter = Router();
 export const teamsRouter = Router();
+export const googleRouter = Router();
 zoomRouter.get("/recordings", async (req, res) => {
   const meetingId = (req.query.meetingId as string) || "";
   if (!meetingId) return res.status(400).json({ error: "meetingId required" });
@@ -30,6 +32,19 @@ teamsRouter.get("/teams-token", async (req, res) => {
 
   try {
     const data = await getAppAccessToken();
+    res.json(data);
+  } catch (e: any) {
+    res.status(500).json({ error: e?.message || "Internal error" });
+  }
+});
+
+googleRouter.get("/meet-token", async (req, res) => {
+  // const meetingId = (req.query.meetingId as string) || "";
+  // const userId = (req.query.userId as string) || ""; //
+  // if (!meetingId) return res.status(400).json({ error: "meetingId required" });
+
+  try {
+    const data = await getAccessTokenFromRefresh();
     res.json(data);
   } catch (e: any) {
     res.status(500).json({ error: e?.message || "Internal error" });
