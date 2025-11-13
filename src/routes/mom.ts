@@ -11,11 +11,11 @@ const attendeeSchema = z.object({
 });
 
 const bodySchema = z.object({
-  agenda: z.string().min(1),
+  agenda: z.any(),              // accept any JSON object for agenda
   transcription: z.string().min(1),
   attendanceData: z.array(attendeeSchema).default([]),
   minuteType: z.enum(["narrativeSummary", "bulletPoints", "narrativeAndBullet"]).default("narrativeAndBullet"),
-  notes: z.string().optional().default(""),
+  notes: z.any().optional().default({}), // accept any JSON object for notes
 });
 
 type BodyInput = z.infer<typeof bodySchema>;
